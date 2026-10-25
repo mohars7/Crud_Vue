@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inici</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include('partials/nav', { user }) %>
+  <main class="container">
+    <h1>Sistema de reserves</h1>
+    <p>Aplicació amb autenticació JWT i una API REST per gestionar usuaris, recursos, reserves i notificacions.</p>
+    <% if (user) { %>
+      <p class="message">Has iniciat sessió com a <strong><%= user.username %></strong> (<%= user.role %>).</p>
+      <p><a class="button" href="/protected">Anar a la zona privada</a></p>
+    <% } else { %>
+      <p><a class="button" href="/login">Iniciar sessió o registrar-se</a></p>
+    <% } %>
+  </main>
+</body>
+</html>

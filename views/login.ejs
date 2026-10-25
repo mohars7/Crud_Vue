@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accés</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include('partials/nav', { user }) %>
+  <main class="container">
+    <h1>Accés</h1>
+
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+    <% if (message) { %><p class="message"><%= message %></p><% } %>
+
+    <div class="forms">
+      <form action="/login" method="POST" class="card">
+        <h2>Iniciar sessió</h2>
+        <label>Usuari o correu
+          <input type="text" name="username" required>
+        </label>
+        <label>Contrasenya
+          <input type="password" name="password" required>
+        </label>
+        <button type="submit">Entrar</button>
+      </form>
+
+      <form action="/register" method="POST" class="card">
+        <h2>Registrar-se</h2>
+        <label>Nom d'usuari
+          <input type="text" name="username" required minlength="3" maxlength="30">
+        </label>
+        <label>Correu electrònic
+          <input type="email" name="email" required>
+        </label>
+        <label>Contrasenya (mínim 8 caràcters)
+          <input type="password" name="password" required minlength="8">
+        </label>
+        <button type="submit">Crear compte</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

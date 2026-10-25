@@ -1,0 +1,219 @@
+@host = http://localhost:3000
+
+### ============ AUTENTICACIÓ ============
+
+### Registre d'un usuari nou
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "username": "laura",
+  "email": "laura@exemple.cat",
+  "password": "laura1234"
+}
+
+### Registre amb dades invàlides (400)
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "username": "a",
+  "email": "no-es-un-correu",
+  "password": "123"
+}
+
+### Login com a ADMIN (guarda la cookie)
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin1234"
+}
+
+### Login amb credencials incorrectes (401)
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "incorrecta"
+}
+
+### Pàgina protegida (cal haver fet login)
+GET {{host}}/protected
+
+### Perfil
+GET {{host}}/profile
+
+### Logout
+POST {{host}}/logout
+Content-Type: application/json
+
+
+### ============ USUARIS ============
+
+### Llista d'usuaris (admin)
+GET {{host}}/users
+
+### Detall d'un usuari
+GET {{host}}/users/2
+
+### Crear usuari (admin)
+POST {{host}}/users
+Content-Type: application/json
+
+{
+  "username": "pere",
+  "email": "pere@exemple.cat",
+  "password": "pere1234",
+  "role": "user"
+}
+
+### Modificar usuari
+PUT {{host}}/users/2
+Content-Type: application/json
+
+{
+  "email": "maria.nova@exemple.cat"
+}
+
+### Eliminar usuari (admin)
+DELETE {{host}}/users/5
+
+
+### ============ RECURSOS ============
+
+### Llista de recursos
+GET {{host}}/resources
+
+### Detall d'un recurs
+GET {{host}}/resources/1
+
+### Crear recurs (admin)
+POST {{host}}/resources
+Content-Type: application/json
+
+{
+  "name": "Aula 202",
+  "description": "Aula amb pissarra digital",
+  "capacity": 25
+}
+
+### Modificar recurs (admin)
+PUT {{host}}/resources/4
+Content-Type: application/json
+
+{
+  "capacity": 40
+}
+
+### Eliminar recurs (admin; 409 si té reserves)
+DELETE {{host}}/resources/4
+
+
+### ============ RESERVES ============
+
+### Llista de reserves
+GET {{host}}/bookings
+
+### Detall d'una reserva
+GET {{host}}/bookings/1
+
+### Crear reserva
+POST {{host}}/bookings
+Content-Type: application/json
+
+{
+  "resourceId": 1,
+  "start": "2027-01-12T11:00:00.000Z",
+  "end": "2027-01-12T12:00:00.000Z"
+}
+
+### Crear reserva que se SOLAPA amb la #1 (409)
+POST {{host}}/bookings
+Content-Type: application/json
+
+{
+  "resourceId": 1,
+  "start": "2027-01-12T10:00:00.000Z",
+  "end": "2027-01-12T12:00:00.000Z"
+}
+
+### Reserva amb dates invertides (400)
+POST {{host}}/bookings
+Content-Type: application/json
+
+{
+  "resourceId": 1,
+  "start": "2027-02-12T12:00:00.000Z",
+  "end": "2027-02-12T11:00:00.000Z"
+}
+
+### Modificar reserva
+PUT {{host}}/bookings/1
+Content-Type: application/json
+
+{
+  "end": "2027-01-12T11:30:00.000Z"
+}
+
+### Cancel·lar reserva
+DELETE {{host}}/bookings/1
+
+
+### ============ NOTIFICACIONS ============
+
+### Llista de notificacions
+GET {{host}}/notifications
+
+### Detall d'una notificació
+GET {{host}}/notifications/1
+
+### Enviar notificació (admin)
+POST {{host}}/notifications
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "message": "Recorda confirmar la teva reserva"
+}
+
+### Marcar com a llegida
+PUT {{host}}/notifications/1
+Content-Type: application/json
+
+{
+  "read": true
+}
+
+### Eliminar notificació
+DELETE {{host}}/notifications/1
+
+
+### ============ PROVA DE PERMISOS ============
+### Fes primer login com a MARIA i prova:
+
+### Login com a MARIA (usuari normal)
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "username": "maria",
+  "password": "maria1234"
+}
+
+### Maria intenta llistar usuaris (403)
+GET {{host}}/users
+
+### Maria intenta crear un recurs (403)
+POST {{host}}/resources
+Content-Type: application/json
+
+{
+  "name": "Prova",
+  "capacity": 5
+}
+
+### Sense login, qualsevol ruta CRUD dóna 401 (fes logout abans)
+GET {{host}}/bookings

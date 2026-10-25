@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Aula 101",
+    "description": "Aula amb projector",
+    "capacity": 30,
+    "createdBy": 1,
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Sala de reunions",
+    "description": "Sala amb pantalla i pissarra",
+    "capacity": 8,
+    "createdBy": 1,
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "name": "Laboratori d'informàtica",
+    "description": "20 ordinadors",
+    "capacity": 20,
+    "createdBy": 1,
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  }
+]

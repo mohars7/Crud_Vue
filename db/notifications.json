@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "userId": 2,
+    "message": "Reserva #1 confirmada per a \"Aula 101\"",
+    "read": false,
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "userId": 3,
+    "message": "Reserva #2 confirmada per a \"Sala de reunions\"",
+    "read": false,
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "userId": 2,
+    "message": "Benvinguda al sistema de reserves",
+    "read": true,
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  }
+]

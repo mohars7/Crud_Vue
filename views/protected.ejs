@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona privada</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include('partials/nav', { user }) %>
+  <main class="container">
+    <h1>Hola, <%= user.username %>!</h1>
+    <p>Aquesta pàgina només és accessible per a usuaris autenticats. El teu rol és <strong><%= user.role %></strong>.</p>
+
+    <section class="card">
+      <h2>Les meves reserves (<%= bookings.length %>)</h2>
+      <% if (bookings.length === 0) { %>
+        <p>No tens cap reserva.</p>
+      <% } else { %>
+        <ul>
+          <% bookings.forEach(b => { %>
+            <li>
+              <strong>#<%= b.id %></strong>
+              <%= b.resource ? b.resource.name : 'Recurs eliminat' %> —
+              <%= new Date(b.start).toLocaleString('ca-ES') %> a
+              <%= new Date(b.end).toLocaleString('ca-ES') %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </section>
+
+    <section class="card">
+      <h2>Notificacions (<%= notifications.filter(n => !n.read).length %> sense llegir)</h2>
+      <% if (notifications.length === 0) { %>
+        <p>No tens notificacions.</p>
+      <% } else { %>
+        <ul>
+          <% notifications.forEach(n => { %>
+            <li class="<%= n.read ? 'read' : 'unread' %>"><%= n.message %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>

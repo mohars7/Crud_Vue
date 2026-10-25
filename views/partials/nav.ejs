@@ -1,0 +1,12 @@
+<nav class="nav">
+  <a href="/" class="brand">Sistema de reserves</a>
+  <div class="links">
+    <% if (user) { %>
+      <a href="/protected">Zona privada</a>
+      <a href="/profile">Perfil</a>
+      <a href="/logout">Tancar sessió (<%= user.username %>)</a>
+    <% } else { %>
+      <a href="/login">Iniciar sessió</a>
+    <% } %>
+  </div>
+</nav>

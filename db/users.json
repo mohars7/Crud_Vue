@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@exemple.cat",
+    "password": "$2b$10$HD0ImErMwOYNjfjP6CXmNOXZtFgjEoOBpHfp.4g1aUKw3Yeiu4ICK",
+    "role": "admin",
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "username": "maria",
+    "email": "maria@exemple.cat",
+    "password": "$2b$10$rl.deyn2RejHUKicZ94Kc.LO85fbvh9/p0Y0ULzy0fT5MzVcxggtW",
+    "role": "user",
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "username": "joan",
+    "email": "joan@exemple.cat",
+    "password": "$2b$10$voIn58X1FccmVyoqEk4tx.FY1W0P4U/IqLIxos3i6GDE4Y07Uf/3e",
+    "role": "user",
+    "createdAt": "2026-10-25T10:00:00.000Z"
+  }
+]
